@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/climbdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: juclimb
+    password: 3429
+
+thymeleaf:
+  cache: false
+
+output:
+  ansi:
+    enabled: ALWAYS
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+jpa:
+  database-platform: org.hibernate.dialect.MYSQL5InnoDBDialect
+  open-in-view: false
+  show-sql: true
+  hibernate:
+    ddl-auto: create
