@@ -19,10 +19,3 @@ output:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis-config.xml
-
-jpa:
-  database-platform: org.hibernate.dialect.MYSQL5InnoDBDialect
-  open-in-view: false
-  show-sql: true
-  hibernate:
-    ddl-auto: create
