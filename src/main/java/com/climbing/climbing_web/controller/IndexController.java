@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 @Controller
 
-public class indexController {
+public class IndexController {
     @GetMapping("/")
     public String index(){
         log.info("index 메서드 call");
