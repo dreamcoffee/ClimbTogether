@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -14,25 +14,15 @@
     <li><a href="/news">랭킹</a></li>
     <li><a href="/contact">테스트1</a></li>
     <li><a href="/contact">테스트2</a></li>
-    <li style="float:right">
-        <span th:if="${session.loginMember}">
-            <a th:href="@{/logout}">
-                <span th:text="${session.loginMember.name}"></span>님 로그아웃
-            </a>
-        </span>
-
-        <span th:if="${session.loginMember == null}">
-            <a th:href="@{/login}">로그인</a>
-        </span>
-    </li>
+    <li style="float:right"><a href="/login">로그인</a></li>
 </ul>
 
 <div class="signup-container login-container">
     <h2>로그인</h2>
-    <form action="/login" method="POST">
+    <form action="/submit-login" method="POST">
         <div class="input-group">
-            <label for="member_id">아이디</label>
-            <input type="text" id="member_id" name="member_id" required>
+            <label for="userid">아이디</label>
+            <input type="text" id="userid" name="userid" required>
         </div>
 
         <div class="input-group">
