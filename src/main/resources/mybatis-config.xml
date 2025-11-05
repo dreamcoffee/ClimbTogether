@@ -7,5 +7,7 @@
         <typeAlias type="com.climbing.climbing_web.controller.indexController" alias="IndexController"/>
 
         <typeAlias type="com.climbing.climbing_web.dto.BoardDTO" alias="board"/>
+
+        <typeAlias type="com.climbing.climbing_web.entity.MemberEntity" alias="member"/>
     </typeAliases>
 </configuration>

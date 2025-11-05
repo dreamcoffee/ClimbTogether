@@ -1,6 +1,6 @@
 package com.climbing.climbing_web.service;
 
-import com.climbing.climbing_web.Entity.MemberEntity;
+import com.climbing.climbing_web.entity.MemberEntity;
 import com.climbing.climbing_web.dto.MemberDTO;
 import com.climbing.climbing_web.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +18,9 @@ public class MemberService {
         // DTO의 필드를 Entity의 생성자에 맞춰 주입
         MemberEntity memberEntity = new MemberEntity(
                 null, // ID는 DB에서 자동 생성되므로 null
-                memberDTO.getMemberName(),
-                memberDTO.getMemberEmail(),
-                memberDTO.getMemberPassword()
+                memberDTO.getName(),
+                memberDTO.getMember_id(),
+                memberDTO.getPassword()
         );
 
         // 2. Repository를 통해 DB에 저장

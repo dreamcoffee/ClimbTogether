@@ -1,7 +1,7 @@
 package com.climbing.climbing_web.repository;
 
 
-import com.climbing.climbing_web.Entity.MemberEntity;
+import com.climbing.climbing_web.entity.MemberEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;

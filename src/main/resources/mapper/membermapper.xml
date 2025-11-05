@@ -7,7 +7,7 @@
     <insert id="save" parameterType="com.climbing.climbing_web.entity.MemberEntity"
             useGeneratedKeys="true" keyProperty="id">
 
-        INSERT INTO member_table (member_name, member_email, member_password)
+        INSERT INTO member_table (name, member_id, password)
         VALUES (#{memberName}, #{memberEmail}, #{memberPassword})
     </insert>
 
