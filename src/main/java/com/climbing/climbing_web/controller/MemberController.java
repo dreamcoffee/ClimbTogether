@@ -28,6 +28,7 @@ public class MemberController {
         System.out.println("MemberController.save");
         System.out.println("memberDTO = " + member);
         MemberService memberService = new MemberService();
+        memberService.save(member);
         return null;
     }
 }
