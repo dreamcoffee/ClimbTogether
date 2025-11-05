@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+<ul class="navbar">
+    <li class="logo-space"><a href="/">CLIMBING</a></li>
+
+    <li><a href="/community">커뮤니티</a></li>
+    <li><a href="/news">랭킹</a></li>
+    <li><a href="/contact">테스트1</a></li>
+    <li><a href="/contact">테스트2</a></li>
+    <li style="float:right"><a href="/login">로그인</a></li>
+</ul>
+
+<div class="signup-container">
+    <h2>회원가입</h2>
+    <form action="/submit-signup" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+            <label for="username">아이디</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="input-group">
+            <label for="confirm_password">비밀번호 확인</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <div class="input-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <button type="submit" class="signup-button">가입하기</button>
+    </form>
+</div>
+</body>
+</html>

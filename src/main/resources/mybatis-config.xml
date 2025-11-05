@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+    <!--클래스 alias가 들어갈 공간-->
+        <typeAlias type="com.climbing.climbing_web.controller.indexController" alias="IndexController"/>
+
+        <typeAlias type="com.climbing.climbing_web.dto.BoardDTO" alias="board"/>
+    </typeAliases>
+</configuration>

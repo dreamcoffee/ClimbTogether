@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+<ul class="navbar">
+    <li class="logo-space"><a href="/">CLIMBING</a></li>
+
+    <li><a href="/community">커뮤니티</a></li>
+    <li><a href="/news">랭킹</a></li>
+    <li><a href="/contact">테스트1</a></li>
+    <li><a href="/contact">테스트2</a></li>
+    <li style="float:right"><a href="/login">로그인</a></li>
+</ul>
+
+<div class="signup-container login-container">
+    <h2>로그인</h2>
+    <form action="/submit-login" method="POST">
+        <div class="input-group">
+            <label for="userid">아이디</label>
+            <input type="text" id="userid" name="userid" required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="signup-button">로그인</button>
+    </form>
+    <div class="signup-link">
+        <br>
+        계정이 없으신가요? <a onclick="goSignup()">회원가입</a>
+    </div>
+</div>
+</body>
+<script th:inline="javascript">
+    /* 목록으로 이동하기 버튼 */
+    const goSignup = () => {
+        location.href = "/signup";
+    }
+</script>
+</html>
