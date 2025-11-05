@@ -15,8 +15,6 @@ public class MemberRepository {
 
     public void save(MemberEntity memberEntity){
         log.info("MemberRepository.save 호출: {}", memberEntity);
-        // "Member는 MemberMapper.xml의 <mapper namespace>를 의미합니다.
-        // "save"는 <insert id>를 의미합니다.
         sql.insert("Member.save", memberEntity);
     }
 }
