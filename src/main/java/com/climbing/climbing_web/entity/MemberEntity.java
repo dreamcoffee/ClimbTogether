@@ -11,6 +11,6 @@ import lombok.*;
 public class MemberEntity {
     private Long id;
     private String member_id;
-    private String Name;
+    private String name;
     private String password;
 }

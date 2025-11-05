@@ -27,6 +27,8 @@ public class MemberController {
     public String save(MemberDTO member){
         System.out.println("MemberController.save");
         System.out.println("memberDTO = " + member);
-        return null;
+        memberService.save(member);
+
+        return "redirect:/login";
     }
 }

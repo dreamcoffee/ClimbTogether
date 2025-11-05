@@ -4,11 +4,15 @@
 
 <mapper namespace="Member">
 
+    <select id="findByMemberId" parameterType="String" resultType="com.climbing.climbing_web.entity.MemberEntity">
+        SELECT * FROM member_table WHERE member_id = #{member_id}
+    </select>
+
     <insert id="save" parameterType="com.climbing.climbing_web.entity.MemberEntity"
             useGeneratedKeys="true" keyProperty="id">
 
         INSERT INTO member_table (name, member_id, password)
-        VALUES (#{memberName}, #{memberEmail}, #{memberPassword})
+        VALUES (#{member_id}, #{name}, #{password})
     </insert>
 
 </mapper>

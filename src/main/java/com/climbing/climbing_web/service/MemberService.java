@@ -18,8 +18,8 @@ public class MemberService {
         // DTO의 필드를 Entity의 생성자에 맞춰 주입
         MemberEntity memberEntity = new MemberEntity(
                 null, // ID는 DB에서 자동 생성되므로 null
-                memberDTO.getName(),
                 memberDTO.getMember_id(),
+                memberDTO.getName(),
                 memberDTO.getPassword()
         );
 
