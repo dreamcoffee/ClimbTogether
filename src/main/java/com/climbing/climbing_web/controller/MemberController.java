@@ -27,7 +27,7 @@ public class MemberController {
     }
 
     @PostMapping("/login") // login.html의 form action과 일치
-    public String login(MemberDTO memberDTO, HttpSession session){ // 👈 HttpSession 객체 추가
+    public String login(MemberDTO memberDTO, HttpSession session){
 
         MemberDTO loginMember = memberService.login(memberDTO);
 

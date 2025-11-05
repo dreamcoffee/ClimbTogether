@@ -14,7 +14,17 @@
     <li><a href="/news">랭킹</a></li>
     <li><a href="/contact">테스트1</a></li>
     <li><a href="/contact">테스트2</a></li>
-    <li style="float:right"><a href="/login">로그인</a></li>
+    <li style="float:right">
+        <span th:if="${session.loginMember}">
+            <a th:href="@{/logout}">
+                <span th:text="${session.loginMember.name}"></span>님 로그아웃
+            </a>
+        </span>
+
+        <span th:if="${session.loginMember == null}">
+            <a th:href="@{/login}">로그인</a>
+        </span>
+    </li>
 </ul>
 
 <div class="signup-container login-container">
