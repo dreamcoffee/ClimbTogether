@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class MemberEntity {
     Long id;
-    String member_id;
-    String name;
-    String password;
+    private String member_id;
+    private String name;
+    private String password;
 }
