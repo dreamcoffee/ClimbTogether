@@ -16,8 +16,12 @@ public class MemberService {
 
         memberEntity.setName(memberDto.getName());
         memberEntity.setPassword(memberDto.getPassword());
-        memberEntity.setId(memberDto.getId());
+        memberEntity.setMember_id(memberDto.getMember_id());
 
         memberRepository.save(memberEntity);
+    }
+
+    public void login(MemberDTO memberDto){
+        MemberEntity memberEntity = new MemberEntity();
     }
 }
