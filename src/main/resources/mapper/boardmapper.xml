@@ -3,11 +3,22 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Board">
-    <select id="getList" resultType="board">
-        SELECT  postid,
-        postname,
-        postdetail
-        FROM    post
-        ORDER BY postid ASC
+    <select id="getList" resultType="com.climbing.climbing_web.dto.BoardDTO">
+        SELECT
+            p.postid,
+            p.postname,
+            p.postdetail,
+            p.member_id,
+            m.name AS writerName
+        FROM post p
+        JOIN member_table m ON p.member_id = m.member_id
+        ORDER BY p.postid DESC
     </select>
+
+    <insert id="save" parameterType="com.climbing.climbing_web.dto.BoardDTO"
+            useGeneratedKeys="true" keyProperty="postid">
+
+        INSERT INTO post (postname, postdetail, member_id)
+        VALUES (#{postname}, #{postdetail}, #{member_id})
+    </insert>
 </mapper>
