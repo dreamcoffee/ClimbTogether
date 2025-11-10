@@ -16,4 +16,10 @@ public class MemberRepository{
         log.info("회원 정보 데이터베이스 저장[MemberRepository" + memberEntity);
         sql.insert("Member.save",memberEntity);
     }
+
+    public MemberEntity getMemberByID(String memberID) {
+        MemberEntity memberEntity = sql.selectOne("Member.findByMemberId", memberID);
+        log.info("memberEntity:{}", memberEntity);
+        return memberEntity;
+    }
 }

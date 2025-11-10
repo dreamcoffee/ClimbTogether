@@ -7,7 +7,13 @@
             useGeneratedKeys="true" keyProperty="id">
 
         INSERT INTO member_table (name, member_id, password)
-        VALUES (#{member_id}, #{name}, #{password})
+        VALUES (#{name}, #{member_id}, #{password})
     </insert>
+
+    <select id="findByMemberId" parameterType="String" resultType="com.climbing.climbing_web.entity.MemberEntity">
+        SELECT *
+        FROM member_table
+        WHERE member_id = #{member_id}
+    </select>
 
 </mapper>
