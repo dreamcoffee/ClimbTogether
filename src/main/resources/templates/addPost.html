@@ -2,15 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="/css/nav.css">
 </head>
 <body>
-<form action="/addPost" method="post" enctype="multipart/form-data">
-    제목 : <input type="text" name="bookname"><br>
-    내용 : <input type="text" name="publisher"><br>
-    <input type="submit" value="저장">
-</form>
-<br>
+<ul class="navbar">
+    <li class="logo-space"><a href="/">CLIMBING</a></li>
+
+    <li><a href="/community">커뮤니티</a></li>
+    <li><a href="/news">랭킹</a></li>
+    <li><a href="/contact">테스트1</a></li>
+    <li><a href="/contact">테스트2</a></li>
+    <li style="float:right">
+        <a th:if="${session.loginId == null}" href="/login">로그인</a>
+
+        <a th:if="${session.loginId != null}" href="/logout">로그아웃</a>
+    </li>
+</ul>
+<div class="content-padding">
+    <form action="/addPost" method="post" enctype="multipart/form-data">
+        제목 : <input type="text" name="bookname"><br>
+        내용 : <input type="text" name="publisher"><br>
+        <input type="submit" value="저장">
+        <br>
+    </form>
+</div>
 <a href="/">메인페이지 이동</a>
 </body>
 </html>
