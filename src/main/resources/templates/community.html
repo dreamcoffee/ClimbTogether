@@ -18,13 +18,14 @@
 <div class="content-padding">
     <table border="1">
         <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>content</th>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
         </tr>
         <tr th:each = "boardinfo : ${boardList}">
             <td>
-                <a th:text = "${boardinfo.postid}" th:href="@{/postid/{id}(id=${boardinfo.postid})}"></a>
+                <a th:text = "${boardinfo.postid}" th:href="@{/postId/{id}(id=${boardinfo.postid})}"></a>
                 <!-- <a th:text = "${bookinfo.bookid}" th:href="@{/bookid(id=${bookinfo.bookid})}"></a>
                 기존 방식은 localhost:8080/bookid/1
                 주석처리 한 방식은 localhost:8080/bookid?id=1
@@ -33,6 +34,7 @@
             </td>
             <td th:text = "${boardinfo.postname}"></td>
             <td th:text = "${boardinfo.postdetail}"></td>
+            <td th:text = "${boardinfo.writerName}"></td>
         </tr>
         <br>
     </table>
