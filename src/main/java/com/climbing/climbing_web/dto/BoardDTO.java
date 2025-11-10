@@ -11,4 +11,6 @@ public class BoardDTO {
     private int postid;
     private String postname;
     private String postdetail;
+    private String member_id;
+    private String writerName;
 }
