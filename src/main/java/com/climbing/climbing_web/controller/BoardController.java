@@ -19,6 +19,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardservice;
 
+    // 커뮤니티 페이지로 이동
     @GetMapping("/community")
     public String getlist(Model model){
         List<BoardDTO> boardDTOList = boardservice.getList();
@@ -26,6 +27,7 @@ public class BoardController {
         return "community";
     }
 
+    // 글 쓰기 페이지로 이동
     @GetMapping("/addPost")
     public String addPost(HttpSession session){
         if (session.getAttribute("loginId") == null){
@@ -36,8 +38,18 @@ public class BoardController {
         return "addPost";
     }
 
+    // 글 쓰기 요청
     @PostMapping("/addPost")
-    public String addPost(BoardDTO boardDTO){
+    public String addPost(BoardDTO boardDTO, HttpSession session){
+        String loginId = (String) session.getAttribute("loginId");
+        if (loginId == null){
+            log.warn("미로그인 사용자의 로그인 시도 차단");
+            return "redirect:/login";
+        }
+
+        boardDTO.setMember_id(loginId);
+        boardservice.savePost(boardDTO);
+        log.info("글 쓰기 요청 완료");
         return "community";
     }
 }
