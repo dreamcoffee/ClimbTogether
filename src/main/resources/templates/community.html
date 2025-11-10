@@ -36,7 +36,13 @@
         </tr>
         <br>
     </table>
-    <button>글 작성</button>
+    <button onclick="goSignup()">글 작성</button>
 </div>
 </body>
+<script th:inline="javascript">
+    // 글 작성 페이지로 이동
+    const goSignup = ()=> {
+        location.href = "/addPost"
+    }
+</script>
 </html>
