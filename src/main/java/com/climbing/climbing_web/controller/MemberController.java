@@ -30,6 +30,11 @@ public class MemberController {
         return "signup";
     }
 
+    @GetMapping("/mypage")
+    public String myPage(){
+        return "mypage";
+    }
+
     @PostMapping("/signup")
     public String signupPost(MemberDTO memberDto){
         log.info("회원가입 요청 : " +memberDto);
