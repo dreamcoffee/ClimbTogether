@@ -1,0 +1,25 @@
+<div th:fragment="navBar" class="header-fixed">
+    <ul class="main-nav">
+        <li class="logo-space"><a href="/">CLIMBING</a></li>
+
+        <li><a href="/community">커뮤니티</a></li>
+        <li><a href="/news">랭킹</a></li>
+        <li><a href="/contact">테스트1</a></li>
+        <li><a href="/contact">테스트2</a></li>
+        <li class="login-logout">
+            <a th:if="${session.loginId == null}" href="/login" class="login-btn">로그인</a>
+
+            <div th:if="${session.loginId != null}" class="profile-dropdown">
+                <button class="dropbtn">
+                    <span th:text="${session.loginId}"></span>님
+                </button>
+
+                <div class="dropdown-content">
+                    <a th:href="@{/mypage}">마이페이지</a>
+                    <a th:href="@{/settings}">설정</a>
+                    <hr> <a th:href="@{/logout}">로그아웃</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

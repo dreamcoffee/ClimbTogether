@@ -7,10 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BoardDTO {
-    private int postid;
-    private String postname;
-    private String postdetail;
+public class MemberDTO {
+    private Long id;
     private String member_id;
-    private String writerName;
+    private String name;
+    private String password;
 }

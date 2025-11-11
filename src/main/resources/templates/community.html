@@ -4,39 +4,42 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/basic-form.css">
 </head>
 <body>
-<ul class="navbar">
-    <li class="logo-space"><a href="/">CLIMBING</a></li>
+<div th:replace="~{fragments/nav_fragment :: navBar}"></div>
 
-    <li><a href="/community">커뮤니티</a></li>
-    <li><a href="/news">랭킹</a></li>
-    <li><a href="/contact">테스트1</a></li>
-    <li><a href="/contact">테스트2</a></li>
-    <li style="float:right"><a href="/login">로그인</a></li>
-</ul>
-<div class="content-padding">
-    <table border="1">
+<div class="main-container content-padding">
+    <table class="community-table">
         <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>content</th>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
         </tr>
-        <tr th:each = "boardinfo : ${boardList}">
-            <td>
-                <a th:text = "${boardinfo.postid}" th:href="@{/postid/{id}(id=${boardinfo.postid})}"></a>
+        <tr th:each = "boardinfo : ${boardList}"
+            th:data-href="@{/postId/{id}(id=${boardinfo.postid})}"
+            onclick="location.href=this.getAttribute('data-href');"
+            style="cursor: pointer;">
+            <td th:text = "${boardinfo.postid}"></td>
                 <!-- <a th:text = "${bookinfo.bookid}" th:href="@{/bookid(id=${bookinfo.bookid})}"></a>
                 기존 방식은 localhost:8080/bookid/1
                 주석처리 한 방식은 localhost:8080/bookid?id=1
                 둘 다 사용할 수 있음
                 -->
-            </td>
             <td th:text = "${boardinfo.postname}"></td>
             <td th:text = "${boardinfo.postdetail}"></td>
+            <td th:text = "${boardinfo.writerName}"></td>
         </tr>
         <br>
     </table>
-    <button>글 작성</button>
+    <button onclick="goSignup()" class="write-button">글 작성</button>
 </div>
 </body>
+<script th:inline="javascript">
+    // 글 작성 페이지로 이동
+    const goSignup = ()=> {
+        location.href = "/addPost"
+    }
+</script>
 </html>

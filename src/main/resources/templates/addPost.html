@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/basic-form.css">
+</head>
+<body>
+<div th:replace="~{fragments/nav_fragment :: navBar}"></div>
+
+<div class="main-container page-content">
+    <form action="/addPost" method="post" enctype="multipart/form-data" class="post-form">
+
+        <div class="post-form-group">
+            <label for="postname">제목</label>
+            <input type="text" id="postname" name="postname">
+        </div>
+
+        <div class="post-form-group">
+            <label for="postdetail">내용</label>
+            <textarea id="postdetail" name="postdetail"></textarea>
+        </div>
+
+        <input type="submit" value="저장" class="save-button">
+        <br>
+    </form>
+</div>
+</body>
+</html>
