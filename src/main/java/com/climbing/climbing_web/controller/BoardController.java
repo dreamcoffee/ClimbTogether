@@ -50,6 +50,6 @@ public class BoardController {
         boardDTO.setMember_id(loginId);
         boardservice.savePost(boardDTO);
         log.info("글 쓰기 요청 완료");
-        return "community";
+        return "redirect:/community";
     }
 }
