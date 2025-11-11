@@ -4,29 +4,27 @@
     <meta charset="UTF-8">
     <title>글쓰기</title>
     <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/basic-form.css">
 </head>
 <body>
-<ul class="navbar">
-    <li class="logo-space"><a href="/">CLIMBING</a></li>
+<div th:replace="~{fragments/nav_fragment :: navBar}"></div>
 
-    <li><a href="/community">커뮤니티</a></li>
-    <li><a href="/news">랭킹</a></li>
-    <li><a href="/contact">테스트1</a></li>
-    <li><a href="/contact">테스트2</a></li>
-    <li style="float:right">
-        <a th:if="${session.loginId == null}" href="/login">로그인</a>
+<div class="main-container page-content">
+    <form action="/addPost" method="post" enctype="multipart/form-data" class="post-form">
 
-        <a th:if="${session.loginId != null}" href="/logout">로그아웃</a>
-    </li>
-</ul>
-<div class="content-padding">
-    <form action="/addPost" method="post" enctype="multipart/form-data">
-        제목 : <input type="text" name="postname"><br>
-        내용 : <input type="text" name="postdetail"><br>
-        <input type="submit" value="저장">
+        <div class="post-form-group">
+            <label for="postname">제목</label>
+            <input type="text" id="postname" name="postname">
+        </div>
+
+        <div class="post-form-group">
+            <label for="postdetail">내용</label>
+            <textarea id="postdetail" name="postdetail"></textarea>
+        </div>
+
+        <input type="submit" value="저장" class="save-button">
         <br>
     </form>
 </div>
-<a href="/">메인페이지 이동</a>
 </body>
 </html>

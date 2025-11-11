@@ -8,15 +8,7 @@
     <link rel="stylesheet" href="/css/nav.css">
 </head>
 <body>
-<ul class="navbar">
-    <li class="logo-space"><a href="/">CLIMBING</a></li>
-
-    <li><a href="/community">커뮤니티</a></li>
-    <li><a href="/news">랭킹</a></li>
-    <li><a href="/contact">테스트1</a></li>
-    <li><a href="/contact">테스트2</a></li>
-    <li style="float:right"><a href="/login">로그인</a></li>
-</ul>
+<div th:replace="~{fragments/nav_fragment :: navBar}"></div>
 
 <div class="signup-container">
     <h2>회원가입</h2>
