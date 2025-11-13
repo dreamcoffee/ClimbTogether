@@ -18,6 +18,10 @@ public class BoardRepository {
         return sql.selectList("Board.getList");
     }
 
+    public BoardDTO detail(Integer id) {
+        return sql.selectOne("Board.detail", id);
+    }
+
     public void save(BoardDTO boardDTO){
         sql.insert("Board.save", boardDTO);
     }

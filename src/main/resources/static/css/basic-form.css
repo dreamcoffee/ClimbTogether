@@ -34,7 +34,9 @@
     background-color: #D87E2E;
 }
 
-/* --- 커뮤니티 목록 페이지 스타일 --- */
+/* ----------------------------- */
+/* --- 게시글 목록 페이지 스타일 --- */
+/* ----------------------------- */
 
 /* 테이블 컨테이너 스타일 */
 .community-table {
@@ -130,4 +132,149 @@
 .post-form-group textarea {
     resize: vertical;
     min-height: 200px;
+}
+
+/* ----------------------------- */
+/* --- 게시글 상세 페이지 스타일 --- */
+/* ----------------------------- */
+
+.detail-table {
+    width: 100%;
+    max-width: 800px; /* 상세 페이지 테이블도 중앙에 모이도록 최대 너비 설정 */
+    margin: 30px auto; /* 상하 여백 및 중앙 정렬 */
+    border-collapse: collapse;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); /* 깔끔한 그림자 */
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.detail-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.detail-table tr:last-child {
+    border-bottom: none;
+}
+
+.detail-table th, .detail-table td {
+    padding: 15px;
+    vertical-align: top;
+    font-size: 1.05em;
+}
+
+.detail-table th {
+    width: 120px; /* 항목 이름 너비 고정 */
+    background-color: #F8F8F8;
+    color: #555555;
+    font-weight: bold;
+    border-right: 1px solid #eee;
+}
+
+/* 내용(postdetail) 셀 스타일 */
+.detail-table tr:nth-child(3) td {
+    white-space: pre-wrap; /* 내용이 줄바꿈 되도록 */
+    min-height: 150px;
+}
+
+/* --- 글 상세 페이지 버튼 그룹 스타일 --- */
+
+.detail-action-wrapper {
+    /* ✅ [추가] 상단 마진을 조정하여 .post-view 아래에 붙도록 합니다. */
+    margin-top: -30px; /* post-view의 하단 마진과 겹치도록 조정 (필요시 값 변경) */
+    padding-bottom: 50px;
+}
+
+.detail-actions {
+    margin-top: 30px;
+    text-align: right;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 20px;
+}
+
+.detail-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: background-color 0.2s ease;
+}
+
+/* 목록 버튼 (Soft style) */
+.detail-actions .list-button {
+    background-color: #AAAAAA; /* 회색 계열 */
+    color: white;
+}
+.detail-actions .list-button:hover {
+    background-color: #888888;
+}
+
+/* 수정/삭제 버튼 (Primary style - Deep Green) */
+.detail-actions .primary-action-button {
+    background-color: #008060; /* Primary Color: 딥 그린 */
+    color: white;
+}
+.detail-actions .primary-action-button:hover {
+    background-color: #D87E2E; /* Secondary Color: 클레이 오렌지 */
+}
+
+.post-view {
+    background-color: #FFFFFF;
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    max-width: 800px; /* 콘텐츠를 중앙에 모이도록 너비 제한 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 제목 영역 */
+.post-header {
+    /* Primary Color (#008060)로 하단 강조선 */
+    border-bottom: 3px solid #008060;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.post-header h2 {
+    font-size: 2em; /* 제목 글꼴 크기 크게 */
+    color: #333333;
+    margin: 0;
+}
+
+/* 메타 정보 (작성자, 번호 등) */
+.post-meta {
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 요소 배치 */
+    align-items: center;
+    font-size: 0.9em;
+    color: #777777;
+    padding: 10px 0;
+    border-bottom: 1px solid #E0E0E0; /* 얇은 구분선 */
+}
+
+.post-meta span {
+    margin-right: 15px;
+}
+
+.post-meta .meta-label {
+    font-weight: bold;
+    color: #555555;
+    margin-right: 5px;
+}
+
+/* 내용 영역 */
+.post-content {
+    min-height: 200px; /* 최소 높이 확보 */
+    padding: 30px 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333333;
+    white-space: pre-wrap; /* 내용이 줄바꿈 되도록 (입력된 공백/줄바꿈 유지) */
 }

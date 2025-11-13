@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -25,6 +26,13 @@ public class BoardController {
         List<BoardDTO> boardDTOList = boardservice.getList();
         model.addAttribute("boardList", boardDTOList);
         return "community";
+    }
+
+    @GetMapping("postId/{id}")
+    public String detail(Model model, @PathVariable("id") Integer id){
+        BoardDTO boardDTO = boardservice.detail(id);
+        model.addAttribute("postDetail", boardDTO);
+        return "detailPost";
     }
 
     // 글 쓰기 페이지로 이동

@@ -16,9 +16,28 @@
     </select>
 
     <insert id="save" parameterType="com.climbing.climbing_web.dto.BoardDTO"
-            useGeneratedKeys="true" keyProperty="postid">
+            useGeneratedKeys="true"
+            keyProperty="postid"
+            keyColumn="postid">
 
-        INSERT INTO post (postname, postdetail, member_id)
-        VALUES (#{postname}, #{postdetail}, #{member_id})
+        INSERT INTO post (
+                postname,
+                postdetail,
+                member_id)
+        VALUES (
+                #{postname},
+                #{postdetail},
+                #{member_id})
     </insert>
+
+    <select id="detail" parameterType="int" resultType="board">
+        SELECT  p.postid,
+                p.postname,
+                p.postdetail,
+                p.member_id,
+                m.name AS writerName
+        FROM   post p
+        JOIN member_table m ON p.member_id = m.member_id
+        WHERE  postid = #{id}
+    </select>
 </mapper>
