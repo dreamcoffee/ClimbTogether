@@ -178,13 +178,6 @@
 }
 
 /* --- 글 상세 페이지 버튼 그룹 스타일 --- */
-
-.detail-action-wrapper {
-    /* ✅ [추가] 상단 마진을 조정하여 .post-view 아래에 붙도록 합니다. */
-    margin-top: -30px; /* post-view의 하단 마진과 겹치도록 조정 (필요시 값 변경) */
-    padding-bottom: 50px;
-}
-
 .detail-actions {
     margin-top: 30px;
     text-align: right;
