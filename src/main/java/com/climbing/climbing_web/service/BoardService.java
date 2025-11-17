@@ -14,10 +14,22 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
 
+    // 커뮤니티 페이지 글 목록 불러오기
     public List<BoardDTO> getList(){
         return boardRepository.getList();
     }
 
+    // 메인 페이지 최신 글 5개 불러오기
+    public List<BoardDTO> getLatestPosts(){
+        return boardRepository.getLatest5Posts();
+    }
+
+    // 게시글 상세보기
+    public BoardDTO detail(Integer id) {
+        return boardRepository.detail(id);
+    }
+
+    // 게시글 저장
     public void savePost(BoardDTO boardDTO){
         log.info("[로그] BoardDTO : " + boardDTO);
         boardRepository.save(boardDTO);

@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/basic-form.css">
+    <link rel="stylesheet" href="/css/mypage.css">
 </head>
 <body>
+<div th:replace="~{fragments/nav_fragment :: navBar}"></div>
 
+<div class="main-container page-content">
+
+    <div class="mypage-header-box">
+        <h2 class="mypage-title">마이페이지</h2>
+
+        <div class="user-info-summary">
+            <div class="user-details">
+                <p class="user-nickname" th:text="${session.loginId} + '님'"></p>
+                <p class="user-id">ID: <span th:text="${session.loginId}"></span></p>
+            </div>
+            <!--
+            <a th:href="@{/settings}" class="settings-link primary-button">
+                계정 관리
+            </a>
+            !-->
+        </div>
+    </div>
+
+    <h3 class="section-title">내가 작성한 글</h3>
+    <table class="community-table my-posts-table">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성일</th>
+        </tr>
+        <tr th:each = "post : ${myPostsList}"
+            th:data-href="@{/postId/{id}(id=${post.postid})}"
+            onclick="location.href=this.getAttribute('data-href');"
+            style="cursor: pointer;">
+
+            <td th:text="${post.postid}"></td>
+            <td th:text="${post.postname}"></td>
+            <td th:text="${post.postdetail}"></td>
+            <td th:text="${post.postdate}"></td> </tr>
+        <tr th:if="${myPostsList == null}">
+            <td colspan="4" style="text-align: center; padding: 20px;">
+                작성한 게시글이 없습니다.
+            </td>
+        </tr>
+    </table>
+
+</div>
 </body>
 </html>

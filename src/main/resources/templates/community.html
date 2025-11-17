@@ -14,7 +14,6 @@
         <tr>
             <th>번호</th>
             <th>제목</th>
-            <th>내용</th>
             <th>작성자</th>
         </tr>
         <tr th:each = "boardinfo : ${boardList}"
@@ -28,7 +27,6 @@
                 둘 다 사용할 수 있음
                 -->
             <td th:text = "${boardinfo.postname}"></td>
-            <td th:text = "${boardinfo.postdetail}"></td>
             <td th:text = "${boardinfo.writerName}"></td>
         </tr>
         <br>

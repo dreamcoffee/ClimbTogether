@@ -6,6 +6,7 @@ import com.climbing.climbing_web.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes; //
@@ -31,7 +32,12 @@ public class MemberController {
     }
 
     @GetMapping("/mypage")
-    public String myPage(){
+    public String myPage(Model model, HttpSession session){
+        String loginId = (String)session.getAttribute("loginId");
+
+        if(loginId == null){
+            return "redirect:login";
+        }
         return "mypage";
     }
 

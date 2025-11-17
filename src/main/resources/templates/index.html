@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>CLIMBING 메인</title>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/basic-form.css">
 </head>
@@ -10,10 +10,37 @@
 <div th:replace="~{fragments/nav_fragment :: navBar}"></div>
 
 <div class="main-container content-padding">
-    <h2>메인 페이지</h2>
-    <p th:if="${session.loginId != null}">
-        <span th:text="${session.loginId}"></span>님, 환영합니다!
-    </p>
+    <div class="latest-posts-section">
+
+        <div class="main-hero-banner">
+            <t3>다른 거 들어 갈 장소</t3>
+        </div>
+
+
+        <br>
+        <div class="section-header">
+            <h3>최신 게시글</h3>
+            <a href="/community" class="more-link">더 보기 ></a>
+        </div>
+
+        <div class="post-list-box">
+
+            <div class="latest-post-item" th:each="post : ${latestPosts}"
+                 th:data-href="@{/postId/{id}(id=${post.postid})}"
+                 onclick="location.href=this.getAttribute('data-href');">
+
+                <span class="post-title" th:text="${post.postname}">글 제목이 표시됩니다.</span>
+                <span class="post-writer" th:text="${post.writerName}">작성자</span>
+            </div>
+
+            <div th:if="${latestPosts == null or latestPosts.empty}" class="no-posts">
+                <p>현재 등록된 최신 게시글이 없습니다.</p>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 </body>
 </html>
