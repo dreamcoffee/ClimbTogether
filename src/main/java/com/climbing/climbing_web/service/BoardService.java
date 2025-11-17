@@ -34,4 +34,14 @@ public class BoardService {
         log.info("[로그] BoardDTO : " + boardDTO);
         boardRepository.save(boardDTO);
     }
+
+    public void updatePost(BoardDTO boardDTO){
+        boardRepository.update(boardDTO);
+        log.info("게시글 수정 완료: {}", boardDTO.getPostid());
+    }
+
+    public void deletePost(Integer id){
+        boardRepository.delete(id);
+        log.info("게시글 삭제 완료: {}", id);
+    }
 }

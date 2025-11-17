@@ -53,4 +53,18 @@
         JOIN member_table m ON p.member_id = m.member_id
         WHERE  postid = #{id}
     </select>
+
+    <update id="update" parameterType="com.climbing.climbing_web.dto.BoardDTO">
+        UPDATE post
+        SET
+            postname = #{postname},
+            postdetail = #{postdetail}
+        WHERE postid = #{postid}
+        AND member_id = #{member_id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM post
+        WHERE postid = #{id}
+    </delete>
 </mapper>
