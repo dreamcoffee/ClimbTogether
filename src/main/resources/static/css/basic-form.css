@@ -271,3 +271,116 @@
     color: #333333;
     white-space: pre-wrap; /* 내용이 줄바꿈 되도록 (입력된 공백/줄바꿈 유지) */
 }
+
+/* --- 4. 메인 페이지 (index.html) 스타일 --- */
+
+/* 환영 배너 */
+.main-hero-banner {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+    margin-top: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.main-hero-banner h1 {
+    color: #008060; /* Primary Color */
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.main-hero-banner p {
+    color: #777;
+    font-size: 1.1em;
+}
+
+/* 최신 게시글 섹션 레이아웃 */
+.latest-posts-section {
+    max-width: 800px; /* 게시글 상세 보기와 동일하게 너비 제한 */
+    margin: 50px auto 0 auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid #D87E2E; /* Secondary Color로 구분 */
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin: 0;
+}
+
+/* '더 보기' 링크 스타일 */
+.more-link {
+    text-decoration: none;
+    color: #4AA0E1; /* Accent Color */
+    font-weight: bold;
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+}
+
+.more-link:hover {
+    color: #008060; /* Primary Color로 호버 효과 */
+}
+
+/* 개별 게시글 목록 항목 */
+.post-list-box {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.latest-post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.latest-post-item:last-child {
+    border-bottom: none;
+}
+
+.latest-post-item:hover {
+    background-color: #f9f9f9;
+}
+
+.post-title {
+    flex-grow: 1;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 20px;
+}
+
+.post-writer {
+    width: 80px;
+    text-align: center;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.post-date {
+    width: 70px;
+    text-align: right;
+    color: #999;
+    font-size: 0.85em;
+}
+
+/* 게시글이 없을 때 */
+.no-posts {
+    padding: 30px;
+    text-align: center;
+    color: #777;
+}

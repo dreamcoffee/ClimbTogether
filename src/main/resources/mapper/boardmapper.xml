@@ -15,6 +15,19 @@
         ORDER BY p.postid DESC
     </select>
 
+    <select id="getLatest5Posts" resultType="com.climbing.climbing_web.dto.BoardDTO">
+        SELECT
+            p.postid,
+            p.postname,
+            p.postdetail,
+            p.member_id,
+            m.name AS writerName
+        FROM post p
+        JOIN member_table m ON p.member_id = m.member_id
+        ORDER BY p.postid DESC
+        LIMIT 5;
+    </select>
+
     <insert id="save" parameterType="com.climbing.climbing_web.dto.BoardDTO"
             useGeneratedKeys="true"
             keyProperty="postid"
