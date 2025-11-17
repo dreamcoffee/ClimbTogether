@@ -24,6 +24,11 @@ public class BoardService {
         return boardRepository.getLatest5Posts();
     }
 
+    // 마이 페이지 내가 쓴 글 불러오기
+    public List<BoardDTO> getMyPosts(String memberId){
+        return boardRepository.getMyPagePosts(memberId);
+    }
+
     // 게시글 상세보기
     public BoardDTO detail(Integer id) {
         return boardRepository.detail(id);

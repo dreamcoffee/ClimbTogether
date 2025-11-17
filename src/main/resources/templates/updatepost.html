@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${postDetail.postname} + ' 수정'"></title>
+    <title>게시글 수정</title>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/basic-form.css">
 </head>
@@ -12,22 +12,23 @@
 <div class="main-container page-content">
     <div class="post-form-container">
         <h2>게시글 수정</h2>
-        <form th:action="@{/updatePost}" method="post" class="post-form" th:object="${postDetail}">
+        <form th:action="@{/updatePost}" method="post" class="post-form">
 
-            <input type="hidden" name="postid" th:field="*{postid}">
+            <input type="hidden" name="postid" th:value="${postDetail.postid}">
 
             <div class="post-form-group">
                 <label for="postname">제목</label>
-                <input type="text" id="postname" name="postname" th:field="*{postname}">
+                <input type="text" id="postname" name="postname" th:value="${postDetail.postname}">
             </div>
 
             <div class="post-form-group">
                 <label for="postdetail">내용</label>
-                <textarea id="postdetail" name="postdetail" maxlength="500" th:field="*{postdetail}"></textarea>
+                <textarea id="postdetail" name="postdetail" maxlength="500" th:text="${postDetail.postdetail}"></textarea>
             </div>
 
             <input type="submit" value="수정 완료" class="save-button">
-            <button type="button" onclick="location.href='/postId/[[*{postid}]]'" class="list-button" style="float: right;">취소</button>
+
+            <button type="button" onclick="location.href='/postId/[[${postDetail.postid}]]'" class="list-button" style="float: right;">취소</button>
         </form>
     </div>
 </div>

@@ -22,9 +22,14 @@ public class WorkoutController {
 
     @GetMapping("/workout")
     public String workout(HttpSession session, Model model) {
+        String loginId = (String) session.getAttribute("loginId");
         if(session.getAttribute("loginId") == null){
             return "redirect:login";
         }
+
+        List<WorkoutDTO> myWorkouts = workoutService.getRecordsByMemberId(loginId);
+
+        model.addAttribute("myWorkouts", myWorkouts);
 
         model.addAttribute("workoutRequest", new WorkoutRequestListDTO());
         return "workout";
@@ -35,7 +40,7 @@ public class WorkoutController {
         return "addworkout";
     }
 
-    @PostMapping
+    @PostMapping("/addworkout")
     public String addWorkoutPost(WorkoutRequestListDTO workoutRequestListDTO, HttpSession session) {
         String memberId = (String) session.getAttribute("loginId");
         if(session.getAttribute("loginId") == null){

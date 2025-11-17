@@ -5,12 +5,60 @@
     <title>운동기록</title>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/basic-form.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+    <style>
+        .workout-color-box {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+            margin-right: 8px;
+            border: 1px solid #333; /* 색 구분을 위해 테두리 추가 */
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="~{fragments/nav_fragment :: navBar}"></div>
 
 <div class="main-container content-padding">
-    <t3>테스트 페이지입니다.</t3>
+
+    <div class="section-header">
+        <h2 class="section-title" style="border: none;">나의 클라이밍 기록</h2>
+        <a href="/addworkout" class="more-link" style="padding-bottom: 0;">기록 추가 +</a>
+    </div>
+
+    <div class="activity-summary-box">
+        <p th:if="${myWorkouts == null or myWorkouts.empty}" style="color: #777;">아직 등록된 운동 기록이 없습니다.</p>
+        <div th:unless="${myWorkouts == null or myWorkouts.empty}" class="activity-stats">
+            <div class="stat-item">
+                <span class="stat-value" th:text="${myWorkouts.size()}">0</span>
+                <span class="stat-label">총 기록 횟수</span>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="section-title">최신 운동 기록</h3>
+
+    <table class="community-table my-posts-table">
+        <tr>
+            <th>날짜</th>
+            <th>장소</th>
+            <th>지점</th>
+            <th>난이도</th>
+            <th>완등 개수</th>
+        </tr>
+        <tr th:each="record : ${myWorkouts}">
+            <td th:text="${#temporals.format(record.recordDate, 'yyyy.MM.dd')}"></td>
+            <td th:text="${record.gymName}"></td>
+            <td th:text="${record.branch}"></td>
+            <td>
+                <span class="workout-color-box" th:style="'background-color:' + ${record.difficultyColor}"></span>
+                <span th:text="${record.difficultyColor}"></span>
+            </td>
+            <td th:text="${record.solvedCount}"></td>
+        </tr>
+    </table>
 </div>
 
 </body>

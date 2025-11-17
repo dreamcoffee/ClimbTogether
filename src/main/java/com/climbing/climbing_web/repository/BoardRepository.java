@@ -23,6 +23,10 @@ public class BoardRepository {
         return sql.selectList("Board.getLatest5Posts");
     }
 
+    public List<BoardDTO> getMyPagePosts(String memberId){
+        return sql.selectList("Board.getMyPagePosts", memberId);
+    }
+
     // 상세 페이지 불러오기
     public BoardDTO detail(Integer id) {
         return sql.selectOne("Board.detail", id);

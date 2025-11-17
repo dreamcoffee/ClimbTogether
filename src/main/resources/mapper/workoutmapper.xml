@@ -6,17 +6,33 @@
     <insert id="save" parameterType="com.climbing.climbing_web.entity.WorkoutEntity"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO workout (
-                member_id,
-                gym_name,
-                record_date,
-                difficulty_color,
-                solved_count
+            member_id,
+            gym_name,
+            branch,
+            record_date,
+            difficulty_color,
+            solved_count
         )
         VALUES (
                    #{memberId},
                    #{gymName},
---                    #{recordDate},
+                   #{branch},
+                   #{recordDate},
                    #{difficultyColor},
                    #{solvedCount})
     </insert>
+
+    <select id="getWorkoutList" parameterType="String" resultType="com.climbing.climbing_web.entity.WorkoutEntity">
+        SELECT
+            id,
+            member_id AS memberId,
+            gym_name AS gymName,
+            branch,
+            record_date AS recordDate,
+            difficulty_color AS difficultyColor,
+            solved_count AS solvedCount
+        FROM workout
+        WHERE member_id = #{memberId}
+        ORDER BY record_date DESC, id DESC
+    </select>
 </mapper>
