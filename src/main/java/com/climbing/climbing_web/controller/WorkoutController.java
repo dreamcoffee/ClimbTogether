@@ -52,7 +52,7 @@ public class WorkoutController {
 
         if(workoutList != null){
             workoutService.recordClimb(workoutList, memberId);
-            log.info("{} 님의 클라이밍 기록 {}건 저장 완료", memberId, workoutList.size());
+            log.info("{} 유저의 클라이밍 기록 {}건 저장 완료", memberId, workoutList.size());
         }
 
         return "redirect:workout";

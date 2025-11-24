@@ -29,6 +29,7 @@ public class BoardController {
         return "community";
     }
 
+    // 글 상세 보기 페이지
     @GetMapping("postId/{id}")
     public String detail(Model model, @PathVariable("id") Integer id){
         BoardDTO boardDTO = boardservice.detail(id);
@@ -92,7 +93,7 @@ public class BoardController {
         return "redirect:/postId/" + boardDTO.getPostid(); // 수정 후 상세 페이지로 이동
     }
 
-    // 💡 추가된 메서드: 글 삭제 처리
+    // 글 삭제
     @GetMapping("/goDelete/{id}")
     public String deletePost(@PathVariable("id") Integer id, HttpSession session) {
         BoardDTO post = boardservice.detail(id);
