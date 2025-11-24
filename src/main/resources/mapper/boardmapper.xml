@@ -74,9 +74,36 @@
         WHERE postid = #{postid}
         AND member_id = #{member_id}
     </update>
-
+    
     <delete id="delete" parameterType="int">
         DELETE FROM post
         WHERE postid = #{id}
     </delete>
+
+    <insert id="saveComment" parameterType="com.climbing.climbing_web.dto.CommentDTO"
+            useGeneratedKeys="true" keyProperty="commentId">
+        INSERT INTO comment (
+        post_id,
+        member_id,
+        comment_detail
+        )
+        VALUES (
+        #{postId},
+        #{memberId},
+        #{commentDetail}
+        )
+    </insert>
+
+    <select id="getComment" parameterType="int" resultType="com.climbing.climbing_web.dto.CommentDTO">
+        SELECT
+            c.comment_id AS commentId,
+            c.post_id AS postId,
+            c.member_id AS memberId,
+            c.comment_detail AS commentDetail,
+            m.name AS writerName
+        FROM comment c
+        JOIN member_table m ON c.member_id = m.member_id
+        WHERE c.post_id = #{postId}
+        ORDER BY c.comment_id ASC
+    </select>
 </mapper>

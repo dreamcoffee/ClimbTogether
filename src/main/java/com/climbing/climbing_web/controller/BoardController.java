@@ -1,6 +1,7 @@
 package com.climbing.climbing_web.controller;
 
 import com.climbing.climbing_web.dto.BoardDTO;
+import com.climbing.climbing_web.dto.CommentDTO;
 import com.climbing.climbing_web.service.BoardService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,11 @@ public class BoardController {
     @GetMapping("postId/{id}")
     public String detail(Model model, @PathVariable("id") Integer id){
         BoardDTO boardDTO = boardservice.detail(id);
+        List<CommentDTO> commentDTO = boardservice.getComment(id);
+
         model.addAttribute("postDetail", boardDTO);
+        model.addAttribute("commentList", commentDTO);
+
         return "detailPost";
     }
 
@@ -106,5 +111,27 @@ public class BoardController {
 
         boardservice.deletePost(id);
         return "redirect:/community";
+    }
+
+    // 댓글 추가
+    @PostMapping("/addComment")
+    public String addComment(HttpSession session, @ModelAttribute
+                                 int postId, String commentDetail){
+
+        String loginId = (String) session.getAttribute("loginId");
+
+        if(loginId == null){
+            log.warn("댓글 작성 권한 없는 상태");
+            return "redirect:/login";
+        }
+
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setPostId(postId);
+        commentDTO.setMemberId(loginId);
+        commentDTO.setCommentDetail(commentDetail);
+
+        boardservice.saveComment(commentDTO);
+
+        return "redirect:/postId/" + postId;
     }
 }

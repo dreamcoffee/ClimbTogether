@@ -179,7 +179,7 @@
 
 /* --- 글 상세 페이지 버튼 그룹 스타일 --- */
 .detail-actions {
-    margin-top: 30px;
+    margin-top: 10px;
     text-align: right;
     max-width: 800px;
     margin-left: auto;
@@ -219,7 +219,7 @@
     background-color: #FFFFFF;
     padding: 30px;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
     max-width: 800px; /* 콘텐츠를 중앙에 모이도록 너비 제한 */

@@ -1,6 +1,7 @@
 package com.climbing.climbing_web.repository;
 
 import com.climbing.climbing_web.dto.BoardDTO;
+import com.climbing.climbing_web.dto.CommentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -47,5 +48,16 @@ public class BoardRepository {
     public void delete(Integer id){
         log.info("게시글 삭제 요청{}", id);
         sql.delete("Board.delete", id);
+    }
+
+    // 댓글 추가
+    public void saveComment(CommentDTO commentDTO){
+        log.info("댓글 추가 요청");
+        sql.insert("Board.saveComment", commentDTO);
+    }
+
+    public List<CommentDTO> getComment(int postId){
+        log.info("댓글 불러오기 요청");
+        return sql.selectList("Board.getComment", postId);
     }
 }
