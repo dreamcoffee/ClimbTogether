@@ -34,7 +34,6 @@
             <th>번호</th>
             <th>제목</th>
             <th>내용</th>
-            <th>작성일</th>
         </tr>
         <tr th:each = "post : ${myPostsList}"
             th:data-href="@{/postId/{id}(id=${post.postid})}"
@@ -44,7 +43,6 @@
             <td th:text="${post.postid}"></td>
             <td th:text="${post.postname}"></td>
             <td th:text="${post.postdetail}"></td>
-            <td th:text="${post.postdate}"></td> </tr>
         <tr th:if="${myPostsList == null}">
             <td colspan="4" style="text-align: center; padding: 20px;">
                 작성한 게시글이 없습니다.

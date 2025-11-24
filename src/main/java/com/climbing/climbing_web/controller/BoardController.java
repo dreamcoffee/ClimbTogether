@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -28,6 +29,7 @@ public class BoardController {
         return "community";
     }
 
+    // 글 상세 보기 페이지
     @GetMapping("postId/{id}")
     public String detail(Model model, @PathVariable("id") Integer id){
         BoardDTO boardDTO = boardservice.detail(id);
@@ -58,6 +60,51 @@ public class BoardController {
         boardDTO.setMember_id(loginId);
         boardservice.savePost(boardDTO);
         log.info("글 쓰기 요청 완료");
+        return "redirect:/community";
+    }
+
+    @GetMapping("/goUpdate/{id}")
+    public String goUpdate(HttpSession session, @PathVariable("id") Integer id, Model model){
+        BoardDTO post = boardservice.detail(id);
+        String loginId = (String) session.getAttribute("loginId");
+        if (loginId == null || !loginId.equals(post.getMember_id())){
+            log.warn("수정 권한이 없는 사용자 접근 시도. 게시글 ID: {}", id);
+            return "redirect:/postId/" + id;
+        }
+
+        model.addAttribute("postDetail", post);
+        return "updatePost";
+    }
+
+    @PostMapping("/updatePost")
+    public String updatePost(@ModelAttribute BoardDTO boardDTO, HttpSession session) {
+        BoardDTO existingPost = boardservice.detail(boardDTO.getPostid());
+        String loginId = (String) session.getAttribute("loginId");
+
+        if (loginId == null || !loginId.equals(existingPost.getMember_id())) {
+            log.warn("수정 권한 없는 사용자의 POST 요청 차단. 게시글 ID: {}", boardDTO.getPostid());
+            return "redirect:/postId/" + boardDTO.getPostid();
+        }
+
+        // member_id는 변경하지 않고 기존 값을 유지
+        boardDTO.setMember_id(loginId);
+        boardservice.updatePost(boardDTO);
+
+        return "redirect:/postId/" + boardDTO.getPostid(); // 수정 후 상세 페이지로 이동
+    }
+
+    // 글 삭제
+    @GetMapping("/goDelete/{id}")
+    public String deletePost(@PathVariable("id") Integer id, HttpSession session) {
+        BoardDTO post = boardservice.detail(id);
+        String loginId = (String) session.getAttribute("loginId");
+
+        if (loginId == null || !loginId.equals(post.getMember_id())) {
+            log.warn("삭제 권한 없는 사용자 접근 시도. 게시글 ID: {}", id);
+            return "redirect:/postId/" + id;
+        }
+
+        boardservice.deletePost(id);
         return "redirect:/community";
     }
 }

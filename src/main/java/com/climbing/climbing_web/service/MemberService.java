@@ -1,5 +1,6 @@
 package com.climbing.climbing_web.service;
 
+import com.climbing.climbing_web.dto.BoardDTO;
 import com.climbing.climbing_web.dto.LoginDTO;
 import com.climbing.climbing_web.dto.MemberDTO;
 import com.climbing.climbing_web.entity.MemberEntity;
@@ -7,6 +8,8 @@ import com.climbing.climbing_web.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service

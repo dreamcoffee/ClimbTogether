@@ -1,9 +1,12 @@
 package com.climbing.climbing_web.controller;
 
+import com.climbing.climbing_web.dto.BoardDTO;
 import com.climbing.climbing_web.dto.LoginDTO;
 import com.climbing.climbing_web.dto.MemberDTO;
+import com.climbing.climbing_web.service.BoardService;
 import com.climbing.climbing_web.service.MemberService;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,15 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes; //
 
+import java.util.List;
+
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
-
     private final MemberService memberService;
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
+    private final BoardService boardService;
 
     @GetMapping("/login")
     public String loginPage(){
@@ -36,8 +38,13 @@ public class MemberController {
         String loginId = (String)session.getAttribute("loginId");
 
         if(loginId == null){
+            log.warn("로그인 하지 않은 유저의 마이페이지 접근");
             return "redirect:login";
         }
+
+        List<BoardDTO> myPostsList = boardService.getMyPosts(loginId);
+        model.addAttribute("myPostsList", myPostsList);
+
         return "mypage";
     }
 

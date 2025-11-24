@@ -23,6 +23,10 @@ public class BoardRepository {
         return sql.selectList("Board.getLatest5Posts");
     }
 
+    public List<BoardDTO> getMyPagePosts(String memberId){
+        return sql.selectList("Board.getMyPagePosts", memberId);
+    }
+
     // 상세 페이지 불러오기
     public BoardDTO detail(Integer id) {
         return sql.selectOne("Board.detail", id);
@@ -31,5 +35,17 @@ public class BoardRepository {
     // 글 저장
     public void save(BoardDTO boardDTO){
         sql.insert("Board.save", boardDTO);
+    }
+
+    // 글 수정
+    public void update(BoardDTO boardDTO){
+        log.info("게시글 수정 요청{}", boardDTO.getPostid());
+        sql.update("Board.update", boardDTO);
+    }
+
+    // 글 삭제
+    public void delete(Integer id){
+        log.info("게시글 삭제 요청{}", id);
+        sql.delete("Board.delete", id);
     }
 }
