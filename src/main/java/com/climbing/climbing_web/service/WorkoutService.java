@@ -50,6 +50,17 @@ public class WorkoutService {
                 .collect(Collectors.toList());
     }
 
+    // 특정 기록 ID로 조회
+    public WorkoutDTO getRecordById(int workoutId) {
+        return workoutRepository.getRecordById(workoutId);
+    }
+
+    // 기록 삭제
+    public void deleteRecord(int workoutId) {
+        workoutRepository.deleteRecord(workoutId);
+        log.info("운동 기록 삭제 완료: {}", workoutId);
+    }
+
     private WorkoutDTO convertToDTO(WorkoutEntity workoutEntity) {
         WorkoutDTO workoutDTO = new WorkoutDTO();
         workoutDTO.setId(workoutEntity.getId());

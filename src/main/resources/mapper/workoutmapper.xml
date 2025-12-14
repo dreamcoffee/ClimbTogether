@@ -35,4 +35,18 @@
         WHERE member_id = #{memberId}
         ORDER BY record_date DESC, id DESC
     </select>
+
+    <select id="getRecordById" resultType="com.climbing.climbing_web.dto.WorkoutDTO">
+        SELECT
+            id,
+            member_id AS memberId,  difficulty_color AS difficultyColor,
+            solved_count AS solvedCount
+        FROM workout
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteRecord" parameterType="int">
+        DELETE FROM workout
+        WHERE id = #{id}
+    </delete>
 </mapper>
