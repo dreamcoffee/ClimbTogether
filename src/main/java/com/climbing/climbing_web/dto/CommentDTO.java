@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CommentDTO {
-    private Long commentId;
+    private int commentId;
     private int postId;
     private String memberId;
     private String writerName;

@@ -60,4 +60,21 @@ public class BoardRepository {
         log.info("댓글 불러오기 요청");
         return sql.selectList("Board.getComment", postId);
     }
+
+    public CommentDTO getCommentById(int commentId) {
+        log.info("댓글 ID로 조회 요청: {}", commentId);
+        return sql.selectOne("Board.getCommentById", commentId);
+    }
+
+    // 댓글 삭제
+    public void deleteComment(int commentId) {
+        log.info("댓글 삭제 요청: {}", commentId);
+        sql.delete("Board.deleteComment", commentId);
+    }
+
+    // 댓글 수정
+    public void updateComment(CommentDTO commentDTO) {
+        log.info("댓글 수정 요청: {}", commentDTO.getCommentId());
+        sql.update("Board.updateComment", commentDTO);
+    }
 }

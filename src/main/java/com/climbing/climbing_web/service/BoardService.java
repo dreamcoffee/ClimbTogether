@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
+
     private final BoardRepository boardRepository;
 
     // 커뮤니티 페이지 글 목록 불러오기
@@ -62,5 +63,22 @@ public class BoardService {
     // 댓글 불러오기
     public List<CommentDTO> getComment(int postId){
         return boardRepository.getComment(postId);
+    }
+
+    // 댓글 ID로 특정 댓글 정보 조회
+    public CommentDTO getCommentById(int commentId) {
+        return boardRepository.getCommentById(commentId);
+    }
+
+    // 댓글 삭제
+    public void deleteComment(int commentId) {
+        boardRepository.deleteComment(commentId);
+        log.info("댓글 삭제 완료: {}", commentId);
+    }
+
+    // 댓글 수정
+    public void updateComment(CommentDTO commentDTO) {
+        boardRepository.updateComment(commentDTO);
+        log.info("댓글 수정 완료: {}", commentDTO.getCommentId());
     }
 }

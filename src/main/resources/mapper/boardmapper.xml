@@ -106,4 +106,25 @@
         WHERE c.post_id = #{postId}
         ORDER BY c.comment_id ASC
     </select>
+
+    <select id="getCommentById" resultType="com.climbing.climbing_web.dto.CommentDTO">
+        SELECT
+        comment_id AS commentId,
+        post_id AS postId,
+        member_id AS memberId,
+        comment_detail AS commentDetail
+        FROM comment
+        WHERE comment_id = #{commentId}
+    </select>
+
+    <delete id="deleteComment">
+        DELETE FROM comment
+        WHERE comment_id = #{commentId}
+    </delete>
+
+    <update id="updateComment" parameterType="com.climbing.climbing_web.dto.CommentDTO">
+        UPDATE comment
+        SET comment_detail = #{commentDetail}
+        WHERE comment_id = #{commentId}
+    </update>
 </mapper>

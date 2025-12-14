@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,8 +119,8 @@ public class BoardController {
 
     // 댓글 추가
     @PostMapping("/addComment")
-    public String addComment(HttpSession session, @ModelAttribute
-                                 int postId, String commentDetail){
+    public String addComment(HttpSession session, @RequestParam("postId")
+                                 int postId, @RequestParam("commentDetail") String commentDetail){
 
         String loginId = (String) session.getAttribute("loginId");
 
@@ -138,6 +135,55 @@ public class BoardController {
         commentDTO.setCommentDetail(commentDetail);
 
         boardservice.saveComment(commentDTO);
+
+        return "redirect:/postId/" + postId;
+    }
+
+    // 댓글 삭제 요청 (DELETE)
+    @PostMapping("/deleteComment")
+    public String deleteComment(HttpSession session,
+                                @RequestParam("commentId") int commentId,
+                                @RequestParam("postId") int postId) {
+
+        String loginId = (String) session.getAttribute("loginId");
+
+        // 1. 댓글 정보 로드 및 권한 확인
+        CommentDTO comment = boardservice.getCommentById(commentId); //
+
+        if (loginId == null || comment == null || !loginId.equals(comment.getMemberId())) {
+            log.warn("댓글 삭제 권한 없는 사용자 접근 시도. 댓글 ID: {}", commentId);
+            return "redirect:/postId/" + postId;
+        }
+
+        boardservice.deleteComment(commentId); //
+        log.info("댓글 삭제 완료. ID: {}", commentId);
+
+        return "redirect:/postId/" + postId;
+    }
+
+    // 댓글 수정 요청 (UPDATE)
+    @PostMapping("/updateComment")
+    public String updateComment(HttpSession session,
+                                @RequestParam("commentId") int commentId,
+                                @RequestParam("postId") int postId,
+                                @RequestParam("updatedDetail") String updatedDetail) {
+
+        String loginId = (String) session.getAttribute("loginId");
+
+        // 1. 댓글 정보 로드 및 권한 확인
+        CommentDTO comment = boardservice.getCommentById(commentId);
+
+        if (loginId == null || comment == null || !loginId.equals(comment.getMemberId())) {
+            log.warn("댓글 수정 권한 없는 사용자 접근 시도. 댓글 ID: {}, 로그인 된 계정 ID: {} ", commentId, loginId);
+            return "redirect:/postId/" + postId;
+        }
+
+        // 2. 댓글 DTO 업데이트
+        comment.setCommentId(commentId);
+        comment.setCommentDetail(updatedDetail);
+
+        boardservice.updateComment(comment);
+        log.info("댓글 수정 완료. ID: {}", commentId);
 
         return "redirect:/postId/" + postId;
     }
