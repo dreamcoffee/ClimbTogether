@@ -1,6 +1,7 @@
 package com.climbing.climbing_web.service;
 
 import com.climbing.climbing_web.dto.BoardDTO;
+import com.climbing.climbing_web.dto.CommentDTO;
 import com.climbing.climbing_web.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,13 +41,26 @@ public class BoardService {
         boardRepository.save(boardDTO);
     }
 
+    // 게시글 수정
     public void updatePost(BoardDTO boardDTO){
         boardRepository.update(boardDTO);
         log.info("게시글 수정 완료: {}", boardDTO.getPostid());
     }
 
+    // 게시글 삭제
     public void deletePost(Integer id){
         boardRepository.delete(id);
         log.info("게시글 삭제 완료: {}", id);
+    }
+
+    // 댓글 추가
+    public void saveComment(CommentDTO commentDTO){
+        boardRepository.saveComment(commentDTO);
+        log.info("댓글 추가 완료");
+    }
+
+    // 댓글 불러오기
+    public List<CommentDTO> getComment(int postId){
+        return boardRepository.getComment(postId);
     }
 }

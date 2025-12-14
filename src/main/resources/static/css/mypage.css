@@ -15,7 +15,7 @@
 .user-info-summary {
     display: flex;
     align-items: center;
-    justify-content: center; /* 전체 요소를 중앙에 배치 */
+    justify-content: center;
     gap: 20px;
     padding: 15px 0;
 }
@@ -23,8 +23,8 @@
 .profile-avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%; /* 원형 프로필 이미지 */
-    border: 3px solid #008060; /* Primary Color 테두리 */
+    border-radius: 50%;
+    border: 3px solid #008060;
     object-fit: cover;
 }
 
@@ -46,8 +46,7 @@
 }
 
 .settings-link {
-    /* 기본 버튼 스타일을 재사용합니다. */
-    margin-left: 50px; /* 상세 정보와 버튼 간격 */
+    margin-left: 50px;
     text-decoration: none;
     padding: 8px 15px;
     font-size: 0.9em;
@@ -78,7 +77,7 @@
     display: block;
     font-size: 1.8em;
     font-weight: bold;
-    color: #D87E2E; /* Secondary Color (클레이 오렌지) */
+    color: #D87E2E;
 }
 
 .stat-label {
@@ -89,7 +88,7 @@
 /* 내가 작성한 글 제목 */
 .section-title {
     color: #333333;
-    border-bottom: 2px solid #008060; /* Primary Color 하단 선 */
+    border-bottom: 2px solid #008060;
     padding-bottom: 5px;
     margin-top: 40px;
     margin-bottom: 15px;
@@ -98,6 +97,5 @@
 
 /* 테이블 재사용 (community-table) */
 .my-posts-table {
-    /* 테이블 자체는 basic-form.css의 .community-table 스타일을 사용합니다. */
     margin-top: 0;
 }

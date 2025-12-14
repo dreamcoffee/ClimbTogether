@@ -20,6 +20,7 @@ public class WorkoutController {
 
     private final WorkoutService workoutService;
 
+    // 운동 기록 페이지 이동
     @GetMapping("/workout")
     public String workout(HttpSession session, Model model) {
         String loginId = (String) session.getAttribute("loginId");
@@ -35,11 +36,13 @@ public class WorkoutController {
         return "workout";
     }
 
+    // 운동 등록 페이지 이동
     @GetMapping("/addworkout")
     public String addWorkout(HttpSession session, Model model) {
         return "addworkout";
     }
 
+    // 운동 기록 등록 요청
     @PostMapping("/addworkout")
     public String addWorkoutPost(WorkoutRequestListDTO workoutRequestListDTO, HttpSession session) {
         String memberId = (String) session.getAttribute("loginId");

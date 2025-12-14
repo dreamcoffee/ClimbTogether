@@ -12,14 +12,12 @@
 }
 
 /* --- 버튼 공통 스타일 --- */
-/* .write-button은 위치만 지정합니다. */
 .write-button {
     float: right;
     margin-top: 20px;
 }
 
 .write-button, .save-button {
-    /* .primary-button 스타일을 여기에 직접 복사해서 적용합니다. */
     background-color: #008060;
     color: white;
     padding: 10px 20px;
@@ -44,18 +42,18 @@
     border-collapse: collapse;
     text-align: left;
     margin-top: 25px;
-    background-color: #FFFFFF; /* 배경색을 흰색으로 지정하여 구분 */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
-    overflow: hidden; /* 모서리 둥글게 처리 */
+    overflow: hidden;
 }
 
 /* 테이블 헤더 (th) 스타일 */
 .community-table th {
-    background-color: #F0F0F0; /* 밝은 회색 헤더 배경 */
-    color: #333333; /* 진한 텍스트 */
+    background-color: #F0F0F0;
+    color: #333333;
     padding: 15px;
-    border-bottom: 2px solid #D87E2E; /* Secondary Color로 하단 강조 */
+    border-bottom: 2px solid #D87E2E;
 }
 
 /* 테이블 셀 (td) 스타일 */
@@ -67,13 +65,13 @@
 
 /* 테이블 행 호버 효과 */
 .community-table tr:hover {
-    background-color: #F9F9F9; /* 마우스 오버 시 연한 배경색 */
+    background-color: #F9F9F9;
     cursor: pointer;
 }
 
-/* 테이블 내 링크 스타일 - Accent Color 적용 */
+/* 테이블 내 링크 스타일 */
 .community-table a {
-    color: #4AA0E1; /* ✅ 하늘색 (액센트 컬러) */
+    color: #4AA0E1;
     text-decoration: none;
     font-weight: 500;
 }
@@ -122,11 +120,11 @@
     transition: border-color 0.2s ease;
 }
 
-/* 입력 필드 포커스 효과 - Primary Color 적용 */
+/* 입력 필드 포커스 효과 */
 .post-form-group input[type="text"]:focus,
 .post-form-group textarea:focus {
-    border-color: #008060; /* ✅ 딥 그린 */
-    outline: none; /* 기본 아웃라인 제거 */
+    border-color: #008060;
+    outline: none;
 }
 
 .post-form-group textarea {
@@ -140,10 +138,10 @@
 
 .detail-table {
     width: 100%;
-    max-width: 800px; /* 상세 페이지 테이블도 중앙에 모이도록 최대 너비 설정 */
-    margin: 30px auto; /* 상하 여백 및 중앙 정렬 */
+    max-width: 800px;
+    margin: 30px auto;
     border-collapse: collapse;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); /* 깔끔한 그림자 */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
     background-color: #FFFFFF;
     border-radius: 6px;
     overflow: hidden;
@@ -164,27 +162,30 @@
 }
 
 .detail-table th {
-    width: 120px; /* 항목 이름 너비 고정 */
+    width: 120px;
     background-color: #F8F8F8;
     color: #555555;
     font-weight: bold;
     border-right: 1px solid #eee;
 }
 
-/* 내용(postdetail) 셀 스타일 */
+/* 내용 셀 스타일 */
 .detail-table tr:nth-child(3) td {
-    white-space: pre-wrap; /* 내용이 줄바꿈 되도록 */
+    white-space: pre-wrap;
     min-height: 150px;
 }
 
 /* --- 글 상세 페이지 버튼 그룹 스타일 --- */
-.detail-actions {
-    margin-top: 30px;
-    text-align: right;
+.detail-actions-wrapper {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    padding-right: 20px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.detail-actions {
+    text-align: right;
 }
 
 .detail-actions button {
@@ -199,7 +200,7 @@
 
 /* 목록 버튼 (Soft style) */
 .detail-actions .list-button {
-    background-color: #AAAAAA; /* 회색 계열 */
+    background-color: #AAAAAA;
     color: white;
 }
 .detail-actions .list-button:hover {
@@ -208,35 +209,34 @@
 
 /* 수정/삭제 버튼 (Primary style - Deep Green) */
 .detail-actions .primary-action-button {
-    background-color: #008060; /* Primary Color: 딥 그린 */
+    background-color: #008060;
     color: white;
 }
 .detail-actions .primary-action-button:hover {
-    background-color: #D87E2E; /* Secondary Color: 클레이 오렌지 */
+    background-color: #D87E2E;
 }
 
 .post-view {
     background-color: #FFFFFF;
     padding: 30px;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-    max-width: 800px; /* 콘텐츠를 중앙에 모이도록 너비 제한 */
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* 제목 영역 */
 .post-header {
-    /* Primary Color (#008060)로 하단 강조선 */
     border-bottom: 3px solid #008060;
     padding-bottom: 15px;
     margin-bottom: 20px;
 }
 
 .post-header h2 {
-    font-size: 2em; /* 제목 글꼴 크기 크게 */
+    font-size: 2em;
     color: #333333;
     margin: 0;
 }
@@ -244,12 +244,12 @@
 /* 메타 정보 (작성자, 번호 등) */
 .post-meta {
     display: flex;
-    justify-content: space-between; /* 양쪽 끝으로 요소 배치 */
+    justify-content: space-between;
     align-items: center;
     font-size: 0.9em;
     color: #777777;
     padding: 10px 0;
-    border-bottom: 1px solid #E0E0E0; /* 얇은 구분선 */
+    border-bottom: 1px solid #E0E0E0;
 }
 
 .post-meta span {
@@ -264,7 +264,7 @@
 
 /* 내용 영역 */
 .post-content {
-    min-height: 200px; /* 최소 높이 확보 */
+    min-height: 200px;
     padding: 30px 0;
     font-size: 1.1em;
     line-height: 1.6;
@@ -285,7 +285,7 @@
 }
 
 .main-hero-banner h1 {
-    color: #008060; /* Primary Color */
+    color: #008060;
     font-size: 2.5em;
     margin-bottom: 10px;
 }
@@ -297,7 +297,7 @@
 
 /* 최신 게시글 섹션 레이아웃 */
 .latest-posts-section {
-    max-width: 800px; /* 게시글 상세 보기와 동일하게 너비 제한 */
+    max-width: 800px;
     margin: 50px auto 0 auto;
 }
 
@@ -305,7 +305,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 3px solid #D87E2E; /* Secondary Color로 구분 */
+    border-bottom: 3px solid #D87E2E;
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
@@ -319,14 +319,14 @@
 /* '더 보기' 링크 스타일 */
 .more-link {
     text-decoration: none;
-    color: #4AA0E1; /* Accent Color */
+    color: #4AA0E1;
     font-weight: bold;
     padding-bottom: 3px;
     transition: color 0.2s ease;
 }
 
 .more-link:hover {
-    color: #008060; /* Primary Color로 호버 효과 */
+    color: #008060;
 }
 
 /* 개별 게시글 목록 항목 */

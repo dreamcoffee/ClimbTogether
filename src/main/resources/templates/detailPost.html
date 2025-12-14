@@ -5,6 +5,7 @@
     <title>글 상세보기</title>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/basic-form.css">
+    <link rel="stylesheet" href="/css/comment.css"> </head>
 </head>
 <body>
 <div th:replace="~{fragments/nav_fragment :: navBar}"></div>
@@ -29,7 +30,7 @@
         </div>
     </div>
 
-    <div class="main-container detail-action-wrapper">
+    <div class="detail-actions-wrapper">
         <div class="detail-actions">
             <button onclick="goList()" class="list-button">목록</button>
             <th:block th:if="${session.loginId != null and session.loginId == postDetail.member_id}">
@@ -39,6 +40,34 @@
         </div>
     </div>
 </div>
+
+    <div class="comment-section">
+        <h3 class="comment-section-title">댓글 (<span th:text="${commentList.size()}">0</span>)</h3>
+
+        <div th:if="${session.loginId != null}" class="comment-input-form">
+            <form th:action="@{/addComment}" method="post" class="comment-form">
+                <input type="hidden" name="postId" th:value="${postDetail.postid}">
+                <input type="text" name="commentDetail" placeholder="댓글을 입력하세요." class="comment-input" required>
+                <button type="submit" class="save-button comment-submit-button">등록</button>
+            </form>
+        </div>
+        <div th:unless="${session.loginId != null}" class="comment-login-message">
+            댓글을 작성하려면 <a th:href="@{/login}">로그인</a>이 필요합니다.
+        </div>
+
+        <div class="comment-list">
+            <div th:each="comment : ${commentList}" class="comment-item">
+                <div class="comment-header">
+                    <span th:text="${comment.writerName}" class="comment-writer"></span>
+                </div>
+                <p th:text="${comment.commentDetail}" class="comment-content-text"></p>
+            </div>
+
+            <div th:if="${commentList.empty}" class="comment-empty-message">
+                첫 번째 댓글을 작성해 보세요!
+            </div>
+        </div>
+    </div>
 </body>
 
 <script th:inline="javascript">

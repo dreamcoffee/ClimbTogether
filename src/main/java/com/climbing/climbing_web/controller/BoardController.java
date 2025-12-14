@@ -1,6 +1,7 @@
 package com.climbing.climbing_web.controller;
 
 import com.climbing.climbing_web.dto.BoardDTO;
+import com.climbing.climbing_web.dto.CommentDTO;
 import com.climbing.climbing_web.service.BoardService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -33,7 +35,15 @@ public class BoardController {
     @GetMapping("postId/{id}")
     public String detail(Model model, @PathVariable("id") Integer id){
         BoardDTO boardDTO = boardservice.detail(id);
+        List<CommentDTO> commentDTO = boardservice.getComment(id);
+
+        if(commentDTO == null){
+            commentDTO = new ArrayList<>();
+        }
+
         model.addAttribute("postDetail", boardDTO);
+        model.addAttribute("commentList", commentDTO);
+
         return "detailPost";
     }
 
@@ -63,6 +73,7 @@ public class BoardController {
         return "redirect:/community";
     }
 
+    // 글 수정 페이지 이동
     @GetMapping("/goUpdate/{id}")
     public String goUpdate(HttpSession session, @PathVariable("id") Integer id, Model model){
         BoardDTO post = boardservice.detail(id);
@@ -76,6 +87,7 @@ public class BoardController {
         return "updatePost";
     }
 
+    // 글 수정
     @PostMapping("/updatePost")
     public String updatePost(@ModelAttribute BoardDTO boardDTO, HttpSession session) {
         BoardDTO existingPost = boardservice.detail(boardDTO.getPostid());
@@ -106,5 +118,27 @@ public class BoardController {
 
         boardservice.deletePost(id);
         return "redirect:/community";
+    }
+
+    // 댓글 추가
+    @PostMapping("/addComment")
+    public String addComment(HttpSession session, @ModelAttribute
+                                 int postId, String commentDetail){
+
+        String loginId = (String) session.getAttribute("loginId");
+
+        if(loginId == null){
+            log.warn("댓글 작성 권한 없는 상태");
+            return "redirect:/login";
+        }
+
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setPostId(postId);
+        commentDTO.setMemberId(loginId);
+        commentDTO.setCommentDetail(commentDetail);
+
+        boardservice.saveComment(commentDTO);
+
+        return "redirect:/postId/" + postId;
     }
 }

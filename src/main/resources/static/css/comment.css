@@ -1,0 +1,60 @@
+/* --- 댓글 섹션 전체 레이아웃 --- */
+.comment-section {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 30px;
+}
+
+/* --- 섹션 제목 --- */
+.comment-section-title {
+    border-bottom: 2px solid #E0E0E0;
+    padding-bottom: 10px;
+}
+
+/* --- 댓글 입력 폼 --- */
+.comment-input-form .comment-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.comment-input-form .comment-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment-input-form .comment-submit-button {
+    padding: 10px 15px;
+}
+
+/* --- 미로그인 메시지 --- */
+.comment-login-message {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    color: #777;
+}
+
+/* --- 개별 댓글 아이템 --- */
+.comment-list .comment-item {
+    border-bottom: 1px dashed #eee;
+    padding: 10px 0;
+}
+
+.comment-list .comment-header {
+    font-weight: bold;
+    color: #333;
+}
+
+.comment-list .comment-content-text {
+    margin: 5px 0 0 0;
+}
+
+/* --- 댓글이 없을 때 메시지 --- */
+.comment-empty-message {
+    padding: 20px;
+    text-align: center;
+    color: #aaa;
+}
