@@ -21,14 +21,14 @@ body {
 /* 이 요소가 중앙에 모이는 역할을 담당하며 Flexbox를 사용 */
 .main-nav {
     list-style-type: none;
-    margin: 0 auto; /* ✅ 중앙 정렬 핵심 */
-    padding: 0 20px; /* 좌우 여백 */
+    margin: 0 auto;
+    padding: 0 20px;
 
-    max-width: 1200px; /* 중앙에 모일 최대 너비 설정 */
+    max-width: 1200px;
 
     display: flex;
-    align-items: center; /* 수직 중앙 정렬 */
-    height: 60px; /* 네비게이션 바의 높이 설정 */
+    align-items: center;
+    height: 60px;
 }
 
 /* 로고/브랜드 이름 공간 스타일 */
@@ -59,18 +59,18 @@ body {
 
 /* 로그인/로그아웃 항목을 오른쪽 끝으로 밀기 */
 .main-nav .login-logout {
-    margin-left: auto; /* 왼쪽 마진을 최대로 늘려 오른쪽으로 보냄 */
+    margin-left: auto;
 }
 
 /* 3. 페이지 내용이 상단바에 가려지지 않도록 공간 확보 */
 .content-padding {
-    padding-top: 60px; /* .main-nav의 높이와 동일하게 설정 */
+    padding-top: 60px;
 }
 
 /* --- 드롭다운 메뉴 스타일 (nav.css에 추가) --- */
 
 .profile-dropdown {
-    position: relative; /* 드롭다운 콘텐츠 위치 기준 */
+    position: relative;
     display: inline-block;
 }
 
@@ -90,7 +90,7 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    right: 0; /* 오른쪽 끝에 붙임 */
+    right: 0;
     background-color: #FFFFFF;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
@@ -112,9 +112,8 @@ body {
     background-color: #e9e9e9;
 }
 
-/* JavaScript 또는 :hover를 사용하여 드롭다운 메뉴를 보이게 함 */
 .profile-dropdown:hover .dropdown-content {
-    display: block; /* ✅ 마우스 오버 시 표시 */
+    display: block;
 }
 
 .dropdown-content hr {

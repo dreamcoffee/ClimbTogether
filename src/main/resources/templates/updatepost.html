@@ -28,7 +28,12 @@
 
             <input type="submit" value="수정 완료" class="save-button">
 
-            <button type="button" onclick="location.href='/postId/[[${postDetail.postid}]]'" class="list-button" style="float: right;">취소</button>
+            <button type="button"
+                    th:onclick="|location.href='/postId/' + ${postDetail.postid}|"
+                    class="list-button"
+                    style="float: right;">
+                취소
+            </button>
         </form>
     </div>
 </div>

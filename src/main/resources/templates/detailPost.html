@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="main-container detail-action-wrapper">
+    <div class="detail-actions-wrapper">
         <div class="detail-actions">
             <button onclick="goList()" class="list-button">목록</button>
             <th:block th:if="${session.loginId != null and session.loginId == postDetail.member_id}">
@@ -40,8 +40,8 @@
         </div>
     </div>
 </div>
-<div class="main-container">
-    <div class="main-container comment-section">
+
+    <div class="comment-section">
         <h3 class="comment-section-title">댓글 (<span th:text="${commentList.size()}">0</span>)</h3>
 
         <div th:if="${session.loginId != null}" class="comment-input-form">
@@ -68,7 +68,6 @@
             </div>
         </div>
     </div>
-</div>
 </body>
 
 <script th:inline="javascript">

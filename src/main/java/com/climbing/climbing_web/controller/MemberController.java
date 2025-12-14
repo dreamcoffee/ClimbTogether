@@ -6,10 +6,12 @@ import com.climbing.climbing_web.dto.MemberDTO;
 import com.climbing.climbing_web.service.BoardService;
 import com.climbing.climbing_web.service.MemberService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes; //
@@ -23,16 +25,20 @@ public class MemberController {
     private final MemberService memberService;
     private final BoardService boardService;
 
+    // 로그인 페이지 이동
     @GetMapping("/login")
     public String loginPage(){
         return "login";
     }
 
+    // 회원 가입 페이지 이동
     @GetMapping("/signup")
-    public String signupPage(){
+    public String signupPage(Model model){
+        model.addAttribute("memberDTO", new MemberDTO());
         return "signup";
     }
 
+    // 마이페이지 이동
     @GetMapping("/mypage")
     public String myPage(Model model, HttpSession session){
         String loginId = (String)session.getAttribute("loginId");
@@ -48,19 +54,23 @@ public class MemberController {
         return "mypage";
     }
 
+    // 회원가입 요청
     @PostMapping("/signup")
-    public String signupPost(MemberDTO memberDto){
+    public String signupPost(@Valid MemberDTO memberDto, BindingResult result){
         log.info("회원가입 요청 : " +memberDto);
         try {
             memberService.save(memberDto);
             return "login";
         }
         catch (Exception e){
-            log.info("회원 가입 중 오류 발생");
+            log.info("회원 가입 중 오류 발생" + e.getMessage());
+
+            result.rejectValue("member_id", "duplicateId", e.getMessage());
             return "signup";
         }
     }
 
+    // 로그인 요청
     @PostMapping("/login")
     public String loginPost(LoginDTO loginDTO, HttpSession session, RedirectAttributes rttr){
         log.info("로그인 요청 : " + loginDTO);
@@ -82,6 +92,7 @@ public class MemberController {
         }
     }
 
+    // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         // 세션에 저장된 모든 정보 삭제

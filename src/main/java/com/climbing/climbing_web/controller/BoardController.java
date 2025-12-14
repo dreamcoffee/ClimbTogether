@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -35,6 +36,10 @@ public class BoardController {
     public String detail(Model model, @PathVariable("id") Integer id){
         BoardDTO boardDTO = boardservice.detail(id);
         List<CommentDTO> commentDTO = boardservice.getComment(id);
+
+        if(commentDTO == null){
+            commentDTO = new ArrayList<>();
+        }
 
         model.addAttribute("postDetail", boardDTO);
         model.addAttribute("commentList", commentDTO);
@@ -68,6 +73,7 @@ public class BoardController {
         return "redirect:/community";
     }
 
+    // 글 수정 페이지 이동
     @GetMapping("/goUpdate/{id}")
     public String goUpdate(HttpSession session, @PathVariable("id") Integer id, Model model){
         BoardDTO post = boardservice.detail(id);
@@ -81,6 +87,7 @@ public class BoardController {
         return "updatePost";
     }
 
+    // 글 수정
     @PostMapping("/updatePost")
     public String updatePost(@ModelAttribute BoardDTO boardDTO, HttpSession session) {
         BoardDTO existingPost = boardservice.detail(boardDTO.getPostid());
