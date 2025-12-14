@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -59,5 +60,27 @@ public class WorkoutController {
         }
 
         return "redirect:workout";
+    }
+
+    @GetMapping("/deleteWorkout/{workoutId}")
+    public String deleteWorkout(@PathVariable("workoutId") int workoutId, HttpSession session) {
+
+        String loginId = (String) session.getAttribute("loginId");
+
+        if (loginId == null) {
+            log.warn("기록 삭제 권한 없는 상태 (로그인 필요)");
+            return "redirect:/login";
+        }
+
+        WorkoutDTO record = workoutService.getRecordById(workoutId);
+
+        if (record == null || !loginId.equals(record.getMemberId())) {
+            log.warn("기록 삭제 권한 없음. 기록 ID: {}, 로그인 ID: {}", workoutId, loginId);
+            return "redirect:/mypage\\";
+        }
+
+        workoutService.deleteRecord(workoutId);
+
+        return "redirect:/workout";
     }
 }

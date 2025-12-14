@@ -13,8 +13,20 @@
             height: 15px;
             border-radius: 3px;
             margin-right: 8px;
-            border: 1px solid #333; /* 색 구분을 위해 테두리 추가 */
+            border: 1px solid #333;
             vertical-align: middle;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .delete-btn:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
@@ -47,7 +59,7 @@
             <th>지점</th>
             <th>난이도</th>
             <th>완등 개수</th>
-        </tr>
+            <th>관리</th> </tr>
         <tr th:each="record : ${myWorkouts}">
             <td th:text="${#temporals.format(record.recordDate, 'yyyy.MM.dd')}"></td>
             <td th:text="${record.gymName}"></td>
@@ -57,9 +69,25 @@
                 <span th:text="${record.difficultyColor}"></span>
             </td>
             <td th:text="${record.solvedCount}"></td>
+
+            <td>
+                <button type="button"
+                        class="delete-btn"
+                        th:onclick="|deleteRecord(${record.id})|">
+                    삭제
+                </button>
+            </td>
         </tr>
     </table>
 </div>
+
+<script th:inline="javascript">
+    function deleteRecord(workoutId) {
+        if (confirm("정말로 이 운동 기록을 삭제하시겠습니까?")) {
+            location.href = "/deleteWorkout/" + workoutId;
+        }
+    }
+</script>
 
 </body>
 </html>
