@@ -58,6 +58,11 @@ public class MemberController {
     @PostMapping("/signup")
     public String signupPost(@Valid MemberDTO memberDto, BindingResult result){
         log.info("회원가입 요청 : " +memberDto);
+
+        if (result.hasErrors()) {
+            return "signup";
+        }
+
         try {
             memberService.save(memberDto);
             return "login";
