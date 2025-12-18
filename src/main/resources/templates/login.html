@@ -17,12 +17,12 @@
         <form action="/login" method="POST">
             <div class="input-group">
                 <label for="member_id">아이디</label>
-                <input type="text" id="member_id" name="member_id" required>
+                <input type="text" id="member_id" name="member_id" maxlength="15" required>
             </div>
 
             <div class="input-group">
                 <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" maxlength="20" required>
             </div>
 
             <button type="submit" class="signup-button">로그인</button>

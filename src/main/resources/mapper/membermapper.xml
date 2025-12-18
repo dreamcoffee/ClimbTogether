@@ -5,7 +5,6 @@
 <mapper namespace="Member">
     <insert id="save" parameterType="com.climbing.climbing_web.entity.MemberEntity"
             useGeneratedKeys="true" keyProperty="id">
-
         INSERT INTO member_table (name, member_id, password)
         VALUES (#{name}, #{member_id}, #{password})
     </insert>
